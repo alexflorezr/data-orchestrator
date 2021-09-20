@@ -1,0 +1,5 @@
+apache-airflow-backport-providers-amazon
+boto3 == 1.17.4
+sagemaker
+fsspec
+s3fs
