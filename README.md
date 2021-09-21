@@ -63,16 +63,12 @@ Total charge = $449.11
 - **role**: mwaa-environment-public-network-MwaaExecutionRole-17LYEO92FDZVE [here](https://console.aws.amazon.com/iam/home?#/roles/mwaa-environment-public-network-MwaaExecutionRole-17LYEO92FDZVE)
 - **Temporal files bucket**: airflow-temporal-objects [here](https://s3.console.aws.amazon.com/s3/buckets/airflow-temporal-objects?region=eu-west-1&tab=objects)
 - **Repository**: temporal repo [here](https://github.com/alexflorezr/data-orchestrator)
-- **Repo structure**:
-<br />
-![dag folder structure](./images/folder_structure_feature_store.png)
-<br />
+- **Repo structure** <br />
+![feature store dag structure](./images/folder_structure_feature_store.png)<br />
 - **dags**
     - name: feature_store_pipeline
-    - dag graph view: feature_store_pipeline
-<br />
-![dag folder structure](./images/feature_store_dag.png)
-<br />
+    - dag graph view: feature_store_pipeline <br />
+![dag graph view](./images/feature_store_dag.png)<br />
 
 ### Current airflow architecture main AWS account (038101219289)
 **Building the airflow environment in AWS (iac)**
