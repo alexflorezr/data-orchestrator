@@ -8,6 +8,7 @@ from airflow.models import DAG
 from airflow.utils.trigger_rule import TriggerRule
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python_operator import PythonVirtualenvOperator
 
 from datetime import datetime, timedelta
 
@@ -43,6 +44,19 @@ config = cfg.config
 # dummy operator
 init = DummyOperator(task_id="start", dag=dag)
 
+## test for virtual operator
+
+def virtualenv_fn():
+    import torch
+    print("torch version: ",torch.__version__)
+
+virtualenv_task = PythonVirtualenvOperator(
+        task_id="virtualenv_task",
+        python_callable=virtualenv_fn,
+        requirements=["torch"],
+        system_site_packages=False,
+        dag=dag,
+    )
 # preprocess the data
 create_table = PythonOperator(
     task_id="create_table",
@@ -61,5 +75,6 @@ create_feature_store = PythonOperator(
     op_kwargs=config['feature_store']
 )
 
-init.set_downstream(create_table)
+init.set_downstream(virtualenv_task)
+virtualenv_task.set_downstream(create_table)
 create_table.set_downstream(create_feature_store)
