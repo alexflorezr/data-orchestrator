@@ -53,7 +53,7 @@ def virtualenv_fn():
     sns_version  = sns.__version__
     import langdetect
     ld_version = langdetect.__version__
-    return(sys_version, sns_version)
+    return(sys_version, sns_version, ld_version)
     #import torch
     #print("torch version: ",torch.__version__)
 
@@ -62,6 +62,7 @@ virtualenv_task = PythonVirtualenvOperator(
         python_callable=virtualenv_fn,
         requirements=["langdetect>=1.0.8", "seaborn>=0.10.1"],
         system_site_packages=False,
+        python_version='3.7',
         dag=dag,
     )
 # preprocess the data
