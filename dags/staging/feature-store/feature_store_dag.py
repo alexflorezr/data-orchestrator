@@ -49,13 +49,15 @@ init = DummyOperator(task_id="start", dag=dag)
 def virtualenv_fn():
     import sys
     print(sys.version)
+    import seaborn as sns
+    print(sns.__version__)
     #import torch
     #print("torch version: ",torch.__version__)
 
 virtualenv_task = PythonVirtualenvOperator(
         task_id="virtualenv_task",
         python_callable=virtualenv_fn,
-        requirements=["torch"],
+        requirements=["seaborn"],
         system_site_packages=False,
         dag=dag,
     )
