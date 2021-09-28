@@ -47,8 +47,10 @@ init = DummyOperator(task_id="start", dag=dag)
 ## test for virtual operator
 
 def virtualenv_fn():
-    import torch
-    print("torch version: ",torch.__version__)
+    import sys
+    print(sys.version)
+    #import torch
+    #print("torch version: ",torch.__version__)
 
 virtualenv_task = PythonVirtualenvOperator(
         task_id="virtualenv_task",
