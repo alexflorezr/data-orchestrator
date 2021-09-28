@@ -51,6 +51,8 @@ def virtualenv_fn():
     sys_version = sys.version
     import seaborn as sns
     sns_version  = sns.__version__
+    import langdetect
+    ld_version = langdetect.__version__
     return(sys_version, sns_version)
     #import torch
     #print("torch version: ",torch.__version__)
@@ -58,7 +60,7 @@ def virtualenv_fn():
 virtualenv_task = PythonVirtualenvOperator(
         task_id="virtualenv_task",
         python_callable=virtualenv_fn,
-        requirements=["langdetect>=1.0.8, seaborn>=0.10.1"],
+        requirements=["langdetect>=1.0.8", "seaborn>=0.10.1"],
         system_site_packages=False,
         dag=dag,
     )
