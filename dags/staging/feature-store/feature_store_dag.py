@@ -52,15 +52,15 @@ def virtualenv_fn():
 
     # import sys
     # sys_version = sys.version
-    # import tensorflow as tf
-    # tf_output = tf.reduce_sum(tf.random.normal([1000, 1000]))
-    return(pip_version)
+    import tensorflow as tf
+    tf_output = tf.reduce_sum(tf.random.normal([1000, 1000]))
+    return(pip_version, tf_output)
 
 
 virtualenv_task = PythonVirtualenvOperator(
         task_id="virtualenv_task",
         python_callable=virtualenv_fn,
-        requirements=["seaborn>=0.10.1"],
+        requirements=["tensorflow", '-f', 'https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.6.0-cp37-cp37m-manylinux2010_x86_64.whl'],
         system_site_packages=False,
         python_version='3.7',
         dag=dag,
