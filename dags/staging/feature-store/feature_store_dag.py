@@ -47,17 +47,20 @@ init = DummyOperator(task_id="start", dag=dag)
 ## test for virtual operator
 
 def virtualenv_fn():
-    import sys
-    sys_version = sys.version
-    import tensorflow as tf
-    tf_output = tf.reduce_sum(tf.random.normal([1000, 1000]))
-    return(sys_version, tf_output)
+    import pip
+    pip_version = pip.__version__
+
+    # import sys
+    # sys_version = sys.version
+    # import tensorflow as tf
+    # tf_output = tf.reduce_sum(tf.random.normal([1000, 1000]))
+    return(pip_version)
 
 
 virtualenv_task = PythonVirtualenvOperator(
         task_id="virtualenv_task",
         python_callable=virtualenv_fn,
-        requirements=["seaborn>=0.10.1", "tensorflow"],
+        requirements=["seaborn>=0.10.1"],
         system_site_packages=False,
         python_version='3.7',
         dag=dag,
