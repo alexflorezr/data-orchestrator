@@ -60,7 +60,7 @@ def virtualenv_fn():
 virtualenv_task = PythonVirtualenvOperator(
         task_id="virtualenv_task",
         python_callable=virtualenv_fn,
-        requirements=["tensorflow", '-f', 'https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.6.0-cp37-cp37m-manylinux2010_x86_64.whl'],
+        requirements=["tensorflow"],
         system_site_packages=False,
         python_version='3.7',
         dag=dag,
