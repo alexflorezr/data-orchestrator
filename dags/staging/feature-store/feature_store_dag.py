@@ -60,7 +60,7 @@ def virtualenv_fn():
 virtualenv_task = PythonVirtualenvOperator(
         task_id="virtualenv_task",
         python_callable=virtualenv_fn,
-        requirements=["tensorflow"],
+        requirements=["scikit-learn"],
         system_site_packages=False,
         python_version='3.7',
         dag=dag,
