@@ -49,12 +49,11 @@ init = DummyOperator(task_id="start", dag=dag)
 def virtualenv_fn():
     import pip
     pip_version = pip.__version__
-
-    # import sys
-    # sys_version = sys.version
-    import tensorflow as tf
-    tf_output = tf.reduce_sum(tf.random.normal([1000, 1000]))
-    return(pip_version, tf_output)
+    import sklearn
+    sklearn_version = sklearn.__version__
+    # import tensorflow as tf
+    # tf_output = tf.reduce_sum(tf.random.normal([1000, 1000]))
+    return(pip_version, sklearn_version)
 
 
 virtualenv_task = PythonVirtualenvOperator(
